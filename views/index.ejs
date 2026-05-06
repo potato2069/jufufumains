@@ -1,0 +1,47 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+
+<main>
+
+  <!-- Hero section — put whatever you want here -->
+  <section>
+    <h1>Ju Fufu Mains</h1>
+    <a href="/builds">View Builds</a>
+    <a href="/calculator">Damage Calc</a>
+  </section>
+
+  <!-- Announcements — only shows if there are any -->
+  <% if (announcements.length > 0) { %>
+  <section>
+    <h2>Announcements</h2>
+    <% announcements.forEach(function(a) { %>
+      <div>
+        <% if (a.pinned) { %><span>Pinned</span><% } %>
+        <h3><%= a.title %></h3>
+        <p><%= a.content %></p>
+        <small><%= new Date(a.createdAt).toLocaleDateString() %></small>
+      </div>
+    <% }) %>
+  </section>
+  <% } %>
+
+  <!-- Featured builds preview -->
+  <section>
+    <h2>Top Builds</h2>
+    <% if (featuredBuilds.length === 0) { %>
+      <p>No builds yet.</p>
+    <% } else { %>
+      <% featuredBuilds.forEach(function(b) { %>
+        <div>
+          <h3><%= b.name %></h3>
+          <p><%= b.description %></p>
+          <p>W-Engine: <%= b.wEngine %></p>
+        </div>
+      <% }) %>
+    <% } %>
+    <a href="/builds">See all builds</a>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>

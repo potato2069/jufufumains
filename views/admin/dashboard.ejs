@@ -1,0 +1,78 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<main>
+  <h1>Admin Dashboard</h1>
+
+  <form method="POST" action="/admin/logout">
+    <button type="submit">Log Out</button>
+  </form>
+
+  <!-- ── Post Announcement ── -->
+  <section>
+    <h2>New Announcement</h2>
+    <form method="POST" action="/admin/announcements">
+      <input type="text" name="title" placeholder="Title" required />
+      <textarea name="content" required></textarea>
+      <label>
+        <input type="checkbox" name="pinned" /> Pin to top
+      </label>
+      <button type="submit">Post</button>
+    </form>
+  </section>
+
+  <!-- ── Post Build ── -->
+  <section>
+    <h2>New Build</h2>
+    <form method="POST" action="/admin/builds">
+      <input type="text" name="name" placeholder="Build name" required />
+      <textarea name="description" required></textarea>
+      <input type="text" name="wEngine" placeholder="W-Engine" required />
+      <input type="text" name="driveDiscs" placeholder="Drive Discs (comma-separated)" />
+      <input type="text" name="mainStats" placeholder='{"Slot 4": "ATK%", "Slot 5": "DMG Bonus"}' />
+      <input type="text" name="skills" placeholder="Skill priority (comma-separated)" />
+      <textarea name="notes"></textarea>
+      <label>
+        <input type="checkbox" name="recommended" /> Mark as recommended
+      </label>
+      <button type="submit">Post Build</button>
+    </form>
+  </section>
+
+  <!-- ── Existing Announcements ── -->
+  <section>
+    <h2>Announcements</h2>
+    <% if (announcements.length === 0) { %>
+      <p>None yet.</p>
+    <% } else { %>
+      <% announcements.forEach(function(a) { %>
+        <div>
+          <span><%= a.title %></span>
+          <!-- Don't change this form's action or method -->
+          <form method="POST" action="/admin/announcements/<%= a.id %>/delete">
+            <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    <% } %>
+  </section>
+
+  <section>
+    <h2>Builds</h2>
+    <% if (builds.length === 0) { %>
+      <p>None yet.</p>
+    <% } else { %>
+      <% builds.forEach(function(b) { %>
+        <div>
+          <span><%= b.name %></span>
+          <form method="POST" action="/admin/builds/<%= b.id %>/delete">
+            <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+          </form>
+        </div>
+      <% }) %>
+    <% } %>
+  </section>
+
+</main>
+
+<%- include('../partials/footer') %>
