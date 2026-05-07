@@ -11,7 +11,7 @@
     "adminaccount": "node prisma/adminaccount.js"
   },
   "dependencies": {
-    "@prisma/client": "^7.8.0",
+    "@prisma/client": "^5.14.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^17.4.2",
     "ejs": "^3.1.10",
@@ -24,6 +24,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.3",
-    "prisma": "^6.19.3"
+    "prisma": "^5.14.0"
   }
 }
