@@ -16,21 +16,6 @@ model Announcement {
   updatedAt DateTime @updatedAt
 }
 
-model Build {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String
-  wEngine     String
-  driveDiscs  String   // JSON array string
-  mainStats   String   // JSON object string
-  subStats    String   // JSON array string
-  skills      String   // JSON array string
-  notes       String?
-  recommended Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
 model User {
   id        Int      @id @default(autoincrement())
   username  String   @unique

@@ -1,16 +1,14 @@
 <%- include('partials/head') %>
 <%- include('partials/navbar') %>
 
-<div class="container mt-5 pt-5">
+<main class="container mt-5 pt-5">
 
   <!-- Welcome -->
   <div class="row justify-content-center">
     <div class="col-md-8">
       <article>
         <h1 class="mb-4">Welcome to Ju Fufu Mains</h1>
-
-        <h2>Stay tuned!</h2>
-        <p>Stuff Stuff Stuff</p>
+        <!-- Add your own welcome content here -->
       </article>
     </div>
   </div>
@@ -28,9 +26,7 @@
             <% } %>
             <h5 class="card-title"><%= a.title %></h5>
             <p class="card-text"><%= a.content %></p>
-            <small class="text-muted">
-              <%= new Date(a.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
-            </small>
+            <small class="text-muted announcement-date" data-date="<%= a.createdAt.toISOString() %>"></small>
           </div>
         </div>
       <% }) %>
@@ -38,29 +34,6 @@
   </div>
   <% } %>
 
-  <!-- Featured Builds -->
-  <% if (featuredBuilds.length > 0) { %>
-  <div class="row justify-content-center mt-5">
-    <div class="col-md-8">
-      <h2 class="mb-3">Top Builds</h2>
-      <div class="row">
-        <% featuredBuilds.forEach(function(b) { %>
-          <div class="col-md-4 mb-3">
-            <div class="card h-100">
-              <div class="card-body">
-                <h5 class="card-title"><%= b.name %></h5>
-                <p class="card-text"><%= b.description %></p>
-                <p class="card-text"><small class="text-muted">W-Engine: <%= b.wEngine %></small></p>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-      </div>
-      <a href="/builds" class="btn btn-outline-secondary mt-2">See all builds</a>
-    </div>
-  </div>
-  <% } %>
-
-</div>
+</main>
 
 <%- include('partials/footer') %>

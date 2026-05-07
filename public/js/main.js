@@ -1,21 +1,11 @@
-// Mobile nav toggle
-const toggle = document.getElementById("navToggle");
-const navLinks = document.getElementById("navLinks");
-
-if (toggle && navLinks) {
-  toggle.addEventListener("click", () => {
-    navLinks.classList.toggle("is-open");
+// Convert announcement dates to the visitor's local timezone
+document.querySelectorAll('.announcement-date').forEach(function(el) {
+  const date = new Date(el.dataset.date);
+  el.textContent = date.toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
   });
-}
-
-// Highlight the active nav link based on current URL
-document.querySelectorAll(".nav-link").forEach((link) => {
-  const href = link.getAttribute("href");
-  const path = window.location.pathname;
-
-  if (href === "/" && path === "/") {
-    link.classList.add("nav-link--active");
-  } else if (href !== "/" && path.startsWith(href)) {
-    link.classList.add("nav-link--active");
-  }
 });

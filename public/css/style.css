@@ -32,3 +32,8 @@ body {
 .custom-cursor-active * {
   cursor: none !important;
 }
+
+/* ── Custom Navbar ── */
+.custom-navbar {
+  background-color: #fabe29;
+}

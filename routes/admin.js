@@ -48,13 +48,9 @@ router.get("/", requireAdmin, async (req, res) => {
   const announcements = await prisma.announcement.findMany({
     orderBy: { createdAt: "desc" },
   });
-  const builds = await prisma.build.findMany({
-    orderBy: { createdAt: "desc" },
-  });
   res.render("admin/dashboard", {
     title: "Ju Fufu Mains | Admin Dashboard",
     announcements,
-    builds,
   });
 });
 
@@ -73,37 +69,6 @@ router.post("/announcements", requireAdmin, async (req, res) => {
 
 router.post("/announcements/:id/delete", requireAdmin, async (req, res) => {
   await prisma.announcement.delete({ where: { id: Number(req.params.id) } });
-  res.redirect("/admin");
-});
-
-// Builds (to be changed)
-router.post("/builds", requireAdmin, async (req, res) => {
-  const { name, description, wEngine, driveDiscs, mainStats, skills, notes, recommended } = req.body;
-
-  const discsArray = driveDiscs.split(",").map((s) => sanitize(s.trim())).filter(Boolean);
-  const skillsArray = skills.split(",").map((s) => sanitize(s.trim())).filter(Boolean);
-
-  let mainStatsObj = {};
-  try { mainStatsObj = JSON.parse(mainStats || "{}"); } catch {}
-
-  await prisma.build.create({
-    data: {
-      name: sanitize(name),
-      description: sanitize(description),
-      wEngine: sanitize(wEngine),
-      driveDiscs: JSON.stringify(discsArray),
-      mainStats: JSON.stringify(mainStatsObj),
-      subStats: "[]",
-      skills: JSON.stringify(skillsArray),
-      notes: notes ? sanitize(notes) : null,
-      recommended: recommended === "on",
-    },
-  });
-  res.redirect("/admin");
-});
-
-router.post("/builds/:id/delete", requireAdmin, async (req, res) => {
-  await prisma.build.delete({ where: { id: Number(req.params.id) } });
   res.redirect("/admin");
 });
 

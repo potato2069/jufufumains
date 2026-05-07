@@ -1,42 +1,9 @@
 <%- include('partials/head') %>
 <%- include('partials/navbar') %>
 
-<main>
-  <h1>Builds</h1>
-
-  <% if (builds.length === 0) { %>
-    <p>No builds posted yet.</p>
-  <% } else { %>
-    <% builds.forEach(function(b) { %>
-      <div>
-        <% if (b.recommended) { %><span>Recommended</span><% } %>
-        <h2><%= b.name %></h2>
-        <p><%= b.description %></p>
-
-        <p>W-Engine: <%= b.wEngine %></p>
-
-        <p>Drive Discs:</p>
-        <ul>
-          <% b.driveDiscs.forEach(function(disc) { %>
-            <li><%= disc %></li>
-          <% }) %>
-        </ul>
-
-        <p>Main Stats:</p>
-        <ul>
-          <% Object.entries(b.mainStats).forEach(function([slot, stat]) { %>
-            <li><%= slot %>: <%= stat %></li>
-          <% }) %>
-        </ul>
-
-        <p>Skill Priority: <%= b.skills.join(' > ') %></p>
-
-        <% if (b.notes) { %>
-          <p>Notes: <%= b.notes %></p>
-        <% } %>
-      </div>
-    <% }) %>
-  <% } %>
+<main class="container mt-5 pt-5">
+  <h1 class="mb-2">Builds & Guides</h1>
+  <p class="text-muted mb-5">Everything you need to know to build and play Ju Fufu effectively.</p>
 </main>
 
 <%- include('partials/footer') %>

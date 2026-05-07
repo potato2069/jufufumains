@@ -8,15 +8,9 @@ router.get("/", async (req, res) => {
     take: 3,
   });
 
-  const featuredBuilds = await prisma.build.findMany({
-    where: { recommended: true },
-    take: 3,
-  });
-
   res.render("index", {
     title: "Ju Fufu Mains",
     announcements,
-    featuredBuilds,
   });
 });
 

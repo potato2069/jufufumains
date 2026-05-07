@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark custom-navbar fixed-top">
+<nav class="navbar navbar-expand-md navbar-light custom-navbar fixed-top">
   <div class="container">
     <a class="navbar-brand" href="/">Ju Fufu Mains</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -28,3 +28,14 @@
     </div>
   </div>
 </nav>
+
+<script>
+  // Highlight active nav link — runs inline so no separate JS file needed
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    const path = window.location.pathname;
+    if ((href === '/' && path === '/') || (href !== '/' && path.startsWith(href))) {
+      link.classList.add('active');
+    }
+  });
+</script>
