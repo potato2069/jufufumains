@@ -1,47 +1,66 @@
 <%- include('partials/head') %>
 <%- include('partials/navbar') %>
 
-<main>
+<div class="container mt-5 pt-5">
 
-  <!-- Hero section — put whatever you want here -->
-  <section>
-    <h1>Ju Fufu Mains</h1>
-    <a href="/builds">View Builds</a>
-    <a href="/calculator">Damage Calc</a>
-  </section>
+  <!-- Welcome -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <article>
+        <h1 class="mb-4">Welcome to Ju Fufu Mains</h1>
 
-  <!-- Announcements — only shows if there are any -->
+        <h2>Stay tuned!</h2>
+        <p>Stuff Stuff Stuff</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- Announcements -->
   <% if (announcements.length > 0) { %>
-  <section>
-    <h2>Announcements</h2>
-    <% announcements.forEach(function(a) { %>
-      <div>
-        <% if (a.pinned) { %><span>Pinned</span><% } %>
-        <h3><%= a.title %></h3>
-        <p><%= a.content %></p>
-        <small><%= new Date(a.createdAt).toLocaleDateString() %></small>
-      </div>
-    <% }) %>
-  </section>
-  <% } %>
-
-  <!-- Featured builds preview -->
-  <section>
-    <h2>Top Builds</h2>
-    <% if (featuredBuilds.length === 0) { %>
-      <p>No builds yet.</p>
-    <% } else { %>
-      <% featuredBuilds.forEach(function(b) { %>
-        <div>
-          <h3><%= b.name %></h3>
-          <p><%= b.description %></p>
-          <p>W-Engine: <%= b.wEngine %></p>
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <h2 class="mb-3">Announcements</h2>
+      <% announcements.forEach(function(a) { %>
+        <div class="card mb-3 <%= a.pinned ? 'border-warning' : '' %>">
+          <div class="card-body">
+            <% if (a.pinned) { %>
+              <span class="badge bg-warning text-dark mb-2">Pinned</span>
+            <% } %>
+            <h5 class="card-title"><%= a.title %></h5>
+            <p class="card-text"><%= a.content %></p>
+            <small class="text-muted">
+              <%= new Date(a.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+            </small>
+          </div>
         </div>
       <% }) %>
-    <% } %>
-    <a href="/builds">See all builds</a>
-  </section>
+    </div>
+  </div>
+  <% } %>
 
-</main>
+  <!-- Featured Builds -->
+  <% if (featuredBuilds.length > 0) { %>
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <h2 class="mb-3">Top Builds</h2>
+      <div class="row">
+        <% featuredBuilds.forEach(function(b) { %>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title"><%= b.name %></h5>
+                <p class="card-text"><%= b.description %></p>
+                <p class="card-text"><small class="text-muted">W-Engine: <%= b.wEngine %></small></p>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <a href="/builds" class="btn btn-outline-secondary mt-2">See all builds</a>
+    </div>
+  </div>
+  <% } %>
+
+</div>
 
 <%- include('partials/footer') %>
