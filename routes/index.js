@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
   });
 
   res.render("index", {
-    title: "Ju Fufu | ZZZ Fanpage",
+    title: "Ju Fufu Mains",
     announcements,
     featuredBuilds,
   });

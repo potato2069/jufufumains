@@ -1,6 +1,10 @@
 # Ju Fufu Mains
 
-A page about all things Ju Fufu! From Zenless Zone Zero!
+A page about all things Ju Fufu! From Zenless Zone Zero! By Ju Fufu Mains.
+
+I made this as a planned side project for the Ju Fufu Mains server a year ago, but was unable to make any progress on it until now.
+
+Anyone can use this to start their own "Mains" website. I made this as accessible and easy to learn and develop as possible. This can also serve as a learning experience for others to learn and start Node.js applications such as this in the future!
 
 ---
 
@@ -23,6 +27,9 @@ To check if Node is installed, run this command:
 node -v
 ```
 You should see a version number. If not, install Node first.
+
+Note for Windows users: We recommend running this project inside WSL (Windows Subsystem  for Linux) rather than directly in Command Prompt or PowerShell. If you don't have WSL, 
+search "WSL" in the Microsoft Store and install Ubuntu.
 
 ---
 
@@ -50,7 +57,7 @@ https://desktop.github.com/download/
 
 ### 2. Install dependencies
 
-Run this commnad to install the package:
+Run this command to install the package:
 ```
 npm install
 ```
@@ -83,7 +90,16 @@ This creates the database file automatically. You only need to run this once, or
 
 ---
 
-### 5. Start the server
+### 5. Creating an admin account
+
+```
+npm run adminaccount
+```
+
+This will ask you to type a username and password. That becomes your admin login at `/admin`. You can run this again any time to add more admin accounts.
+
+
+### 6. Start the server
 
 For development (auto-restarts when you save files):
 ```
@@ -108,7 +124,7 @@ Your `.env` file lives in the project root and should look like this:
 ```
 PORT=3000
 HOST=0.0.0.0
-SESSION_SECRET=your-long-random-secret-here
+SESSION_SECRET=generate-this-with-the-command-below
 APP_BASE_URL=http://localhost:3000
 
 # Leave both false during development.
@@ -125,7 +141,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 Copy the output into your `.env`.
 
-**APP_BASE_URL** — your site's full URL. Use `http://localhost:3000` while developing. When you deploy, change it to `https://yourdomain.com`.
+**APP_BASE_URL** — your site's full URL. Use `http://localhost:3000` while developing. When it is deployed, change it to `https://yourdomain.com`.
 
 **TRUST_PROXY and SESSION_COOKIE_SECURE** — leave both `false` during development. When you deploy with Nginx and HTTPS, set both to `true`.
 
@@ -134,11 +150,13 @@ Copy the output into your `.env`.
 ## Adding a New Page
 
 1. Create a route file in `routes/` — copy `routes/lore.js` as a starting point since it's the simplest one
+
 2. Register it in `server.js`:
    ```js
    const myPageRouter = require("./routes/mypage");
    app.use("/mypage", myPageRouter);
    ```
+   
 3. Create a `views/mypage.ejs` file — start with this structure:
    ```html
    <%- include('partials/head') %>
@@ -154,15 +172,6 @@ Copy the output into your `.env`.
 
 ---
 
-## Creating an admin account
-
-```
-npm run adminaccount
-```
-
-This will ask you to type a username and password. That becomes your admin login at `/admin`. You can run this again any time to add more admin accounts.
-
----
 ## Relevant Commands
 
 | Command | Description |

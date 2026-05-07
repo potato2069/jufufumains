@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
     skills: JSON.parse(b.skills || "[]"),
   }));
 
-  res.render("builds", { title: "Builds | Ju Fufu", builds: parsed });
+  res.render("builds", { title: "Ju Fufu Mains | Builds", builds: parsed });
 });
 
 module.exports = router;
