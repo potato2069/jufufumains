@@ -8,7 +8,11 @@
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
-    "adminaccount": "node prisma/adminaccount.js"
+    "adminaccount": "node prisma/adminaccount.js",
+    "clean": "rm -rf node_modules",
+    "clean:db": "rm -f prisma/dev.db",
+    "clean:sessions": "rm -rf sessions",
+    "fresh": "npm run clean && npm install && npm run db:push"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
