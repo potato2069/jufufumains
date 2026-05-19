@@ -115,6 +115,27 @@ Then open your browser and go to **http://localhost:3000**
 
 ---
 
+## Running with Docker
+
+If you don't want to install Node.js on your computer, you can run the project with Docker instead.
+
+Make sure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed.
+
+```bash
+# First time
+cp .env.example .env   # fill in your SESSION_SECRET
+docker compose up --build
+
+# Create your admin account
+docker compose exec app node prisma/adminaccount.js
+
+# Important commands to use
+docker compose up      # start
+docker compose down    # stop
+```
+
+Open your browser at http://localhost:3000
+
 # NOTES
 
 ## .env Guide
