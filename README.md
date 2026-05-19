@@ -126,14 +126,14 @@ Make sure you have [Docker Desktop](https://www.docker.com/products/docker-deskt
 cp .env.example .env   # fill in your SESSION_SECRET
 docker compose up --build
 
+# Detach the session and build the database (you only need to do this once)
+docker compose exec app npx prisma db push
+
 # Create your admin account
 docker compose exec app node prisma/adminaccount.js
 
-# Important commands to use
-docker compose up      # start
-docker compose down    # stop
 ```
-
+IMPORTANT:
 Open your browser at http://localhost:3000
 
 # NOTES
@@ -203,3 +203,15 @@ Copy the output into your `.env`.
 | `npm run db:studio` | Open a visual database browser |
 | `npm run adminaccount` | Create a new admin account |
 | `npm install` | Install all dependencies |
+
+
+## Helpful Docker Commands
+
+| Command | Description |
+|---|---|
+| `docker compose up --build` | For first run, or for code changes |
+| `docker compose up` | Start containers |
+| `docker compose down` | Stop containers |
+| `docker compose down -v` | Stop and delete containers |
+| `docker compose up -d` | Start in background |
+| `docker compose logs -f` | View live logs |
